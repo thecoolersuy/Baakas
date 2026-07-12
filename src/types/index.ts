@@ -11,3 +11,26 @@ export interface Product {
     thumbnail: string,
     images: string[]
 }
+
+export interface ProductsResponse {
+    products: Product[]
+    total: number
+    skip: number
+    limit: number
+}
+
+export interface CartItem {
+    product: Product
+    quantity: number
+}
+
+export interface Cart{
+    items: CartItem[]
+}
+
+export interface ProductQueryParams{
+    limit? : number,
+    skip? : number,
+    q? : string, //search query
+    category? : string
+}
