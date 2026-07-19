@@ -2,13 +2,14 @@ import type { Product } from "../../../types/index";
 import useCartStore from "@store/cartStore";
 import { Link } from "react-router-dom";
 import Button from "@components/ui/Button";
+import { memo } from "react";
 
 interface ProductCardProps {
   product: Product;
   className?: string;
 }
 
-function ProductCard({ product, className }: ProductCardProps) {
+const ProductCard = memo(function ProductCard({ product, className }: ProductCardProps) {
   const addItem = useCartStore((state) => state.addItem);
 
   const discountedPrice =
@@ -80,5 +81,6 @@ function ProductCard({ product, className }: ProductCardProps) {
     </>
   );
 }
+)
 
 export default ProductCard;
