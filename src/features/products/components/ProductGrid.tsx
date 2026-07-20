@@ -1,11 +1,12 @@
 import type { Product } from "../../../types/index";
 import ProductCard from "./ProductCard";
+import { memo } from "react";
 
 interface ProductGridProps {
   list: Product[];
 }
 
-function ProductGrid({ list }: ProductGridProps) {
+const ProductGrid = memo(function ProductGrid({ list }: ProductGridProps) {
   if (list.length === 0) {
     return (
       <div className="py-16 text-center">
@@ -28,5 +29,6 @@ function ProductGrid({ list }: ProductGridProps) {
     </>
   );
 }
+)
 
 export default ProductGrid;

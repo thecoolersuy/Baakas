@@ -1,7 +1,7 @@
 import { Link, NavLink } from "react-router-dom";
 import { ShoppingBag, Search, User } from "lucide-react";
-import { clsx } from "clsx";
 import useCartStore from "@store/cartStore";
+import baakaslogo from "../../public/baakaslogo.png";
 
 function Navbar() {
   const itemCount = useCartStore((state) => state.getTotalItems());
@@ -22,7 +22,7 @@ function Navbar() {
           aria-label="Logo mark"
           className="absolute left-1/2 -translate-x-1/2"
         >
-          <ShoppingBag size={22} strokeWidth={1.5} />
+          <img src={baakaslogo} alt="baakas" className="h-23 w-auto" />
         </Link>
         <div className="flex items-center gap-8">
           <button
