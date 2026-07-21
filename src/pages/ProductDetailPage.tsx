@@ -7,7 +7,7 @@ import { Link, useNavigate, useParams } from "react-router-dom";
 import { Star } from "lucide-react";
 import Button from "@components/ui/Button";
 import { ShoppingBag } from "lucide-react";
-import { RotateCcw, ArrowLeft, Shield, Truck } from "lucide-react";
+import { RotateCcw, ArrowLeft, Shield, Truck, Minus, Plus } from "lucide-react";
 
 function ProductDetailPage() {
   const { id } = useParams();
@@ -25,7 +25,7 @@ function ProductDetailPage() {
   const isinCart = cartItems.find((item) => item.product.id === Number(id));
   const itemsInCartCount = cartItems.filter(
     (item) => item.product.id === Number(id),
-  );
+  ).length;
   function handleAddToCart() {
     if (!product) return;
 
@@ -186,9 +186,9 @@ function ProductDetailPage() {
                   onClick={() => handleQuantityChange(quantity - 1)}
                   disabled={quantity <= 1}
                   aria-label="decrease Quanitity"
-                  className="w-8 h-8 flex items-center jutify-center border border-[#e5e5e5] rounded hover:border-[#9a9a9a] diabled:cursor-not-allowed transition-colors"
+                  className="w-8 h-8 flex items-center justify-center border border-[#e5e5e5] rounded hover:border-[#9a9a9a] transition-colors"
                 >
-                  -
+                  <Minus size={16} strokeWidth={2.5} />
                 </button>
                 <span
                   id="quantity"
@@ -203,7 +203,7 @@ function ProductDetailPage() {
                   aria-label="Increase quantity"
                   className="w-8 h-8 flex items-center justify-center border border-[#E5E5E5] rounded hover:border-[#9A9A9A] transition-colors"
                 >
-                  +
+                  <Plus size={16} strokeWidth={2.5} />
                 </button>
                 {product.stock <= 10 && (
                   <span className="text-xs text-orange-500">
@@ -220,7 +220,7 @@ function ProductDetailPage() {
             >
               <ShoppingBag size={16} className="mr-2" aria-label="true" />
               {isinCart
-                ? `Add more (${itemsInCartCount} in cart`
+                ? `Add more (${itemsInCartCount} in cart)`
                 : "Add to Cart"}
             </Button>
             <div className="flex flex-col gap-3 pt-2">
