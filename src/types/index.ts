@@ -10,6 +10,12 @@ export interface Product {
   category: string;
   thumbnail: string;
   images: string[];
+  warrantyInformation?: string;
+  shippingInformation?: string;
+  returnPolicy?: string;
+  availabilityStatus?: string;
+  minimumOrderQuantity?: number;
+  tags?: string[];
 }
 
 export interface ProductsResponse {

@@ -20,8 +20,8 @@ const ProductCard = memo(function ProductCard({ product, className }: ProductCar
     <>
       <article className={`group flex flex-col ${className}`}>
         <Link
-          to={"/products/${product.id}"}
-          aria-label={"View ${product.title}"}
+          to={`/products/${product.id}`}
+          aria-label={`View ${product.title}`}
           className="block overflow-hidden bg-[#F9F9F9] rounded mb-3"
         >
           <div className="aspect-square overflow-hidden">
@@ -41,7 +41,7 @@ const ProductCard = memo(function ProductCard({ product, className }: ProductCar
           </span>
 
           <Link
-            to={"/products/${product.id}"}
+            to={`/products/${product.id}`}
             className="text-sm font-medium text-[#111111] hover:text-[#666666] transition-colors line-clamp-2 leading-snug"
           >
             {product.title}

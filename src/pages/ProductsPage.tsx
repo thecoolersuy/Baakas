@@ -89,28 +89,27 @@ function ProductsPage() {
               onClick={() => handleCategoryChange(cat)}
             />
           ))}
-
-          {isLoading ? (
-            <LoadingGrid />
-          ) : isError ? (
-            <ErrorMessage
-              message="couldnt fetch the products you asked for"
-              onRetry={refetch}
-            />
-          ) : (
-            <ProductGrid list={data?.products ?? []} />
-          )}
-          {totalPages > 1 && (
-            <div className="w-full">
-              <Pagination
-                page={page}
-                totalPages={totalPages}
-                onPrev={handlePrevPage}
-                onNext={handleNextPage}
-                hasNext={isNextPage}
-              />
-            </div>
-          )}
+        </div>
+      )}
+      {isLoading ? (
+        <LoadingGrid />
+      ) : isError ? (
+        <ErrorMessage
+          message="couldnt fetch the products you asked for"
+          onRetry={refetch}
+        />
+      ) : (
+        <ProductGrid list={data?.products ?? []} />
+      )}
+      {totalPages > 1 && (
+        <div className="w-full">
+          <Pagination
+            page={page}
+            totalPages={totalPages}
+            onPrev={handlePrevPage}
+            onNext={handleNextPage}
+            hasNext={isNextPage}
+          />
         </div>
       )}
     </div>
