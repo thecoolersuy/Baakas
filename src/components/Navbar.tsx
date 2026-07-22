@@ -1,10 +1,22 @@
-import { Link, NavLink } from "react-router-dom";
+import { Link, NavLink, useLocation, useNavigate } from "react-router-dom";
 import { ShoppingBag, Search, User } from "lucide-react";
 import useCartStore from "@store/cartStore";
 import baakaslogo from "../../public/baakaslogo.png";
 
 function Navbar() {
   const itemCount = useCartStore((state) => state.getTotalItems());
+  const navigate = useNavigate();
+  const location = useLocation();
+
+  function handleSearchClick() {
+    if (location.pathname !== "/products") {
+      navigate("/products");
+      return;
+    }
+
+    document.getElementById("product-search")?.focus();
+  }
+
   return (
     <header
       role="banner"
@@ -28,6 +40,7 @@ function Navbar() {
           <button
             aria-label="ssearch products"
             className="text-[#666666] hover:text-[#111111] transition-colors"
+            onClick={handleSearchClick}
           >
             <Search size={20} strokeWidth={1.5} />
           </button>

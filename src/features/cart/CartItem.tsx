@@ -27,7 +27,6 @@ const CartItem = memo(function CartItem({ item }: CartItemProps) {
   const lineTotal = item.product.price * item.quantity;
   return (
     <article className="flex gap-4 py-6 border-b border-[#E5E5E5]">
-      {/* Product image */}
       <Link
         to={`/products/${item.product.id}`}
         className="shrink-0"
@@ -42,7 +41,6 @@ const CartItem = memo(function CartItem({ item }: CartItemProps) {
         </div>
       </Link>
 
-      {/* Product details */}
       <div className="flex flex-1 flex-col gap-1 min-w-0">
         <Link
           to={`/products/${item.product.id}`}
@@ -54,7 +52,6 @@ const CartItem = memo(function CartItem({ item }: CartItemProps) {
           {item.product.category}
         </span>
 
-        {/* Delivery info — matches reference screenshot */}
         <div className="flex flex-col gap-1 mt-2">
           <span className="text-xs text-[#666666]">✓ Order today</span>
           {item.product.shippingInformation && (
@@ -70,13 +67,11 @@ const CartItem = memo(function CartItem({ item }: CartItemProps) {
         </div>
       </div>
 
-      {/* Quantity + price + remove */}
       <div className="flex flex-col items-end justify-between shrink-0">
         <span className="text-sm font-medium text-[#111111]">
           ${lineTotal.toFixed(2)}
         </span>
 
-        {/* Quantity controls */}
         <div
           className="flex items-center gap-2"
           role="group"

@@ -3,8 +3,10 @@ import { Link } from "react-router-dom";
 import { useMemo } from "react";
 import Button from "@components/ui/Button";
 import CartItem from "../features/cart/CartItem";
+import { useNavigate } from "react-router-dom";
 
 function CartPage() {
+  const navigate = useNavigate();
   const items = useCartStore((state) => state.items);
   const clearCart = useCartStore((state) => state.clearCart);
 
@@ -56,7 +58,7 @@ function CartPage() {
           variant="primary"
           size="lg"
           className="mt-4"
-          onClick={() => alert("Checkout coming soon!")}
+          onClick={() => alert("You have successfully placed an order.")}
         >
           Check out
         </Button>
@@ -123,7 +125,10 @@ function CartPage() {
           variant="primary"
           size="lg"
           className="w-full mt-6"
-          onClick={() => alert("Checkout coming soon!")}
+          onClick={() => {
+            alert("You have successfully placed an order.");
+            navigate("/products");
+          }}
         >
           Check out
         </Button>

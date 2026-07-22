@@ -41,8 +41,8 @@ function ProductDetailPage() {
     const clamped = Math.min(
       Math.max(1, newQty),
       product.minimumOrderQuantity
-        ? Math.max(product.minimumOrderQuantity, 10)
-        : 10,
+        ? Math.max(product.minimumOrderQuantity, product.stock)
+        : product.stock,
     );
     setQuantity(clamped);
   }
