@@ -3,13 +3,17 @@ import useCartStore from "@store/cartStore";
 import { Link } from "react-router-dom";
 import Button from "@components/ui/Button";
 import { memo } from "react";
+import LazyImage from "@components/ui/LazyImage";
 
 interface ProductCardProps {
   product: Product;
   className?: string;
 }
 
-const ProductCard = memo(function ProductCard({ product, className }: ProductCardProps) {
+const ProductCard = memo(function ProductCard({
+  product,
+  className,
+}: ProductCardProps) {
   const addItem = useCartStore((state) => state.addItem);
 
   const discountedPrice =
@@ -25,11 +29,9 @@ const ProductCard = memo(function ProductCard({ product, className }: ProductCar
           className="block overflow-hidden bg-[#F9F9F9] rounded mb-3"
         >
           <div className="aspect-square overflow-hidden">
-            <img
+            <LazyImage
               src={product.thumbnail}
               alt={product.title}
-              loading="lazy"
-              decoding="async"
               className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
             />
           </div>
@@ -80,7 +82,6 @@ const ProductCard = memo(function ProductCard({ product, className }: ProductCar
       </article>
     </>
   );
-}
-)
+});
 
 export default ProductCard;
