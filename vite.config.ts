@@ -1,8 +1,8 @@
-import { defineConfig } from "vite";
 import react from "@vitejs/plugin-react";
 import tailwindcss from "@tailwindcss/vite";
 import path from "path";
 import { visualizer } from "rollup-plugin-visualizer";
+import { defineConfig } from "vitest/config";
 
 // https://vite.dev/config/
 export default defineConfig({
@@ -27,6 +27,12 @@ export default defineConfig({
       "@store": path.resolve(__dirname, "./src/store"),
       "@types": path.resolve(__dirname, "./src/types"),
     },
+  },
+  test: {
+    environment: "jsdom", //create a fake dom element as the test runs in node environement which dont have dom
+    setupFiles: ["./src/test/setup.ts"], //tobeindocument or other enlish like commands
+    globals: true, //gives access to testapis liek describe it expect globally so we dont need to import
+    css: false,
   },
   build: {
     chunkSizeWarningLimit: 500,
