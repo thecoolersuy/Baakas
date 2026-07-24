@@ -1,6 +1,8 @@
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { BrowserRouter } from "react-router-dom";
 import type { ReactNode } from "react";
+import { render } from "@testing-library/react";
+import type { RenderOptions } from "@testing-library/react";
 
 //a fesh querclient fr each test that componenet needs, to function
 //just mimicking the actual environment
@@ -27,3 +29,13 @@ function AllProviders({ children }: { children: ReactNode }) {
     </QueryClientProvider>
   );
 }
+
+function renderWithProviders(
+  ui: React.ReactElement,
+  options?: Omit<RenderOptions, "wrapper">,
+) {
+  return render(ui, { wrapper: AllProviders, ...options });
+}
+
+export * from "@testing-library/react";
+export { renderWithProviders };
