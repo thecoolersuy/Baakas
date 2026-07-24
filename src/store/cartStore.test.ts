@@ -71,5 +71,16 @@ describe("cartStore", () => {
       const { items } = useCartStore.getState();
       expect(items).toHaveLength(0);
     });
+    it("only removes the specific product", () => {
+      act(() => {
+        useCartStore.getState().addItem(mockProduct);
+        useCartStore.getState().addItem(mockProduct2);
+
+        useCartStore.getState().removeItem(mockProduct2.id);
+      });
+      const { items } = useCartStore.getState();
+      expect(items).toHaveLength(1);
+      expect(items[0].product.id).toBe(1);
+    });
   });
 });
