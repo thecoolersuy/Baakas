@@ -8,7 +8,7 @@ describe("Button", () => {
     render(<Button>Add to Cart</Button>);
 
     expect(
-      screen.getByRole("button", { name: "Add to cart" }),
+      screen.getByRole("button", { name: "Add to Cart" }),
     ).toBeInTheDocument();
   });
 
@@ -17,7 +17,7 @@ describe("Button", () => {
 
     render(<Button onClick={handleClick}>Click me</Button>);
 
-    await userEvent.click(screen.getByRole("button", { name: "Clickme" }));
+    await userEvent.click(screen.getByRole("button", { name: "Click me" }));
 
     expect(handleClick).toHaveBeenCalledTimes(1);
   });

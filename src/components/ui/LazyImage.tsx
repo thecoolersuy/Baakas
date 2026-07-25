@@ -23,6 +23,11 @@ function LazyImage({
     const element = imgRef.current;
     if (!element) return;
 
+    if (typeof IntersectionObserver === "undefined") {
+      setIsInView(true);
+      return;
+    }
+
     //create a observer  which fires callback when element visisbility changes
     const observer = new IntersectionObserver(
       (entries) => {
