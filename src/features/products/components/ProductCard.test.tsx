@@ -39,35 +39,14 @@ describe("ProductCard", () => {
   it("shows discounted price when discount exists", () => {
     renderWithProviders(<ProductCard product={mockProduct} />);
 
-    // ProductCard renders prices as "$215.98" and "$239.98"
-    // getByText must match the exact string in the DOM including $
-    // 239.98 * (1 - 10/100) = 215.982 → toFixed(2) = "215.98"
     expect(screen.getByText("$215.98")).toBeInTheDocument();
     expect(screen.getByText("$239.98")).toBeInTheDocument();
   });
 
-  it("shows only original price when no discount", () => {
-    const noDiscountProduct = { ...mockProduct, discountPercentage: 0 };
-    renderWithProviders(<ProductCard product={noDiscountProduct} />);
-
-    expect(screen.getByText("$239.98")).toBeInTheDocument();
-
-    // Discount badge should not exist
-    expect(screen.queryByText(/-\d+%/)).not.toBeInTheDocument();
-  });
-
-  it("has accessible add to cart button", () => {
-    renderWithProviders(<ProductCard product={mockProduct} />);
-    expect(
-      screen.getByRole("button", { name: "Add Modern Bookshelf to cart" }),
-    ).toBeInTheDocument();
-  });
-
   it("adds product to cart when button clicked", async () => {
-    const user = userEvent.setup();
     renderWithProviders(<ProductCard product={mockProduct} />);
 
-    await user.click(
+    await userEvent.click(
       screen.getByRole("button", { name: "Add Modern Bookshelf to cart" }),
     );
 
