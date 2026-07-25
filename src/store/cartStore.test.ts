@@ -83,4 +83,72 @@ describe("cartStore", () => {
       expect(items[0].product.id).toBe(1);
     });
   });
+  describe("updateItem", () => {
+    it("updates the quantity of an item", () => {
+      act(() => {
+        useCartStore.getState().addItem(mockProduct);
+        useCartStore.getState().updateQuantity(mockProduct.id, 2);
+
+        const { items } = useCartStore.getState();
+        expect(items[0].quantity).toBe(2);
+      });
+    });
+    it("removes the item when the quantity is 0", () => {
+      act(() => {
+        useCartStore.getState().addItem(mockProduct);
+        useCartStore.getState().removeItem(mockProduct.id);
+
+        const { items } = useCartStore.getState();
+        expect(items).toHaveLength(0);
+      });
+    });
+  });
+
+  describe("getTotalItems", () => {
+    it("returns 0 for empty cart", () => {
+      const total = useCartStore.getState().getTotalItems();
+      expect(total).toBe(0);
+    });
+
+    it("returns correct total across multple items", () => {
+      useCartStore.getState().addItem(mockProduct);
+      useCartStore.getState().addItem(mockProduct);
+      useCartStore.getState().addItem(mockProduct2);
+      const total = useCartStore.getState().getTotalItems();
+
+      expect(total).toBe(3);
+    });
+  });
+
+  describe("getTotalPrice", () => {
+    it("returns 0 for empty cart", () => {
+      expect(useCartStore.getState().getTotalPrice()).toBe(0);
+    });
+
+    it("calculates total price", () => {
+      act(() => {
+        useCartStore.getState().addItem(mockProduct);
+        useCartStore.getState().addItem(mockProduct);
+        useCartStore.getState().addItem(mockProduct2);
+
+        const total = useCartStore.getState().getTotalPrice();
+        expect(total).toBeCloseTo(249.97, 2);
+      });
+    });
+  });
+
+  //test for clearcart
+  describe("clearCart", () => {
+    it("empties out items in the cart", () => {
+      act(() => {
+        useCartStore.getState().addItem(mockProduct);
+        useCartStore.getState().addItem(mockProduct2);
+
+        useCartStore.getState().clearCart();
+      });
+
+      const { items } = useCartStore.getState();
+      expect(items).toHaveLength(0);
+    });
+  });
 });
