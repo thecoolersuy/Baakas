@@ -1,4 +1,6 @@
+
 <div align="center">
+  <h2 align="center"><b>Baakas</b></h2>
   <p align="center">
     Optimized e-commerce shopping platform built to solve real frontend engineering issues using Tanstack for data caching and state synchronization & Zustand for centralized global store with selector functions to pick only the exact pieces of state I need.
     <br />
